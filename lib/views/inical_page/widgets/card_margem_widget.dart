@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sicon_flutter/controller/controller_linearProgress.dart';
 import '../../../shared/constants/colors.dart';
 
@@ -26,22 +25,21 @@ class _CardMargemWidgetState extends State<CardMargemWidget> {
   @override
   Widget build(BuildContext context) {
     final valorFinal = c.margemUtilizada.value - c.valorBruto.value;
-    return SizedBox(
-      width: widget.larguraTela,
-      height: widget.alturaTela * 0.252,
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: widget.alturaTela * 0.017,
-          left: widget.alturaTela * 0.01,
-          right: widget.alturaTela * 0.01,
-        ),
+    return Padding(
+      padding: EdgeInsets.only(
+        top: widget.alturaTela * 0.017,
+        left: widget.alturaTela * 0.01,
+        right: widget.alturaTela * 0.01,
+      ),
+      child: Expanded(
         child: Card(
           elevation: 2,
           child: Padding(
             padding: EdgeInsets.only(
-              top: widget.alturaTela * 0.01,
+              top: widget.alturaTela * 0.004,
               left: widget.larguraTela * 0.03,
               right: widget.larguraTela * 0.03,
+              bottom: widget.alturaTela * 0.014,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.6.5
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
@@ -20,7 +21,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - images/logoSicon.jpg
+    - images/appbar_logo.png
     - images/ChatSuporte.jpg
     - images/primeiroAcesso.jpg
-    - images/imageSicon.png
+    - images/logo_marca.webp

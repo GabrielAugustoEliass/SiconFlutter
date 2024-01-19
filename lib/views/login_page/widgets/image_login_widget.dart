@@ -17,9 +17,9 @@ class ImageLoginWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: larguraTela * 0.09),
       child: Image.asset(
-        'images/logoSicon.jpg',
-        width: larguraTela * 0.7,
-        height: alturaTela * 0.14,
+        'images/logo_marca.webp',
+        width: larguraTela * 0.65,
+        height: alturaTela * 0.13,
       ),
     );
   }

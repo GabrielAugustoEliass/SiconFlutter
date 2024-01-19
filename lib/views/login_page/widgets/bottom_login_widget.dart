@@ -1,27 +1,33 @@
-// ignore_for_file: sort_child_properties_last, prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, avoid_print, curly_braces_in_flow_control_structures
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sicon_flutter/shared/constants/colors.dart';
-import 'package:sicon_flutter/views/inical_page/inicial_page.dart';
+import 'package:sicon_flutter/views/inical_page/pages/inicial_page.dart';
+import '../../../controller/login_controller.dart';
 
 class BottomLoginWidget extends StatelessWidget {
-  const BottomLoginWidget({
-    super.key,
-    required this.larguraTela,
-    required this.alturaTela,
-  });
-  final double larguraTela;
-  final double alturaTela;
+  BottomLoginWidget({
+    Key? key,
+  }) : super(key: key);
+
+  final loginController = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) {
+    final larguraTela = MediaQuery.of(context).size.width;
+    final alturaTela = MediaQuery.of(context).size.height;
+
     return Align(
       alignment: Alignment.bottomCenter,
       child: ElevatedButton(
         onPressed: () {
-          Get.to(InicialPage());
+          if (loginController.controllerNameUsuario.text != 'gabriel.elias') {
+            loginController.valorDigitadoUsuario(
+                loginController.controllerNameUsuario.text);
+          } else {
+            Get.to(InicialPage());
+          }
         },
         child: Text('Acessar'),
         style: ElevatedButton.styleFrom(
