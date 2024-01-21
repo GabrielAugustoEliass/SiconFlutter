@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, sort_child_properties_last, unrelated_type_equality_checks
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +11,7 @@ import 'package:sicon_flutter/views/login_page/widgets/image_login_widget.dart';
 import 'package:sicon_flutter/views/login_page/widgets/login_text_field_widget.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -19,25 +19,31 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final tamanhoTela = Get.put(TamanhosTelas());
-  final loginController = Get.put(LoginController());
+  final login = Get.put(LoginController());
+  bool isVisible = true;
+
+  void showSenha() {
+    setState(() {
+      isVisible = !isVisible;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            width: tamanhoTela.larguraTela,
-            height: tamanhoTela.alturaTela * 0.99,
-            child: Padding(
-              padding: EdgeInsets.only(
-                top: tamanhoTela.alturaTela * 0.01,
-                right: tamanhoTela.larguraTela * 0.035,
-                left: tamanhoTela.larguraTela * 0.035,
-                bottom: tamanhoTela.alturaTela * 0.01,
-              ),
-              child: Stack(
+        child: SizedBox(
+          height: tamanhoTela.alturaTela,
+          width: tamanhoTela.larguraTela,
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: tamanhoTela.alturaTela * 0.01,
+              right: tamanhoTela.larguraTela * 0.037,
+              left: tamanhoTela.larguraTela * 0.037,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,79 +55,52 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: ImageLoginWidget(
-                      larguraTela: tamanhoTela.larguraTela,
-                      alturaTela: tamanhoTela.alturaTela,
-                    ),
+                  ImageLoginWidget(
+                    larguraTela: tamanhoTela.larguraTela,
+                    alturaTela: tamanhoTela.alturaTela,
                   ),
                   Form(
-                    key: loginController.formKey,
+                    key: login.formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        SizedBox(height: tamanhoTela.alturaTela * 0.1),
                         LoginTextFieldWidget(
-                          controller: loginController.controllerNameUsuario,
-                          icon: Icons.person_outline,
+                          controller: login.controllerNameUsuario,
+                          icon: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.person_outline),
+                          ),
                           title: 'Usuário',
-                          validar: (value) {
-                            if (value.isEmpty) {
-                              return 'O nome do usuário não pode ser vazio';
-                            } else {
-                              return null;
-                            }
-                          },
                           keyboardType: TextInputType.text,
-                          onChanged: (valueDigitado) {
-                            if (loginController.controllerNameUsuario.text !=
-                                valueDigitado) {
-                              return;
-                            } else {
-                              return null;
-                            }
-                          },
+                          onChanged: (valueDigitado) {},
+                          isObscureText: false,
                         ),
-                        SizedBox(
-                          height: tamanhoTela.alturaTela * 0.03,
-                        ),
+                        SizedBox(height: tamanhoTela.alturaTela * 0.03),
                         LoginTextFieldWidget(
-                          controller: loginController.controllerSenhaUsuario,
-                          icon: Icons.lock_outline,
+                          isObscureText: isVisible,
+                          controller: login.controllerSenhaUsuario,
+                          icon: IconButton(
+                            onPressed: () {
+                              showSenha();
+                            },
+                            icon: isVisible
+                                ? const Icon(Icons.visibility_off_outlined)
+                                : const Icon(Icons.visibility_outlined),
+                          ),
                           title: 'Senha',
-                          validar: (value) {
-                            if (value.isEmpty) {
-                              return 'A senha não pode ser vazia';
-                            } else {
-                              return null;
-                            }
-                          },
                           keyboardType: TextInputType.text,
-                          onChanged: (valueDigitado) {
-                            if (valueDigitado !=
-                                loginController.controllerSenhaUsuario) {
-                              return 'Usuário ou senha Inválidos';
-                            } else {
-                              return null;
-                            }
-                          },
+                          onChanged: (valueDigitado) {},
                         ),
-                        SizedBox(
-                          height: tamanhoTela.alturaTela * 0.01,
-                        ),
-                        Text(
-                          'Esqueci minha senha',
-                          textAlign: TextAlign.left,
-                        ),
-                        SizedBox(
-                          height: tamanhoTela.alturaTela * 0.05,
-                        ),
+                        SizedBox(height: tamanhoTela.alturaTela * 0.01),
+                        Text('Esqueci minha senha', textAlign: TextAlign.left),
+                        SizedBox(height: tamanhoTela.alturaTela * 0.05),
                         BottomLoginWidget(),
+                        AjudasWidget(),
                       ],
                     ),
                   ),
-                  AjudasWidget()
                 ],
               ),
             ),

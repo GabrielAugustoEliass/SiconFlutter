@@ -20,14 +20,8 @@ class _ConsignacoesPageState extends State<ConsignacoesPage> {
 
   @override
   Widget build(BuildContext context) {
-    final larguraTela = MediaQuery.of(context).size.width;
-    final alturaTela = MediaQuery.of(context).size.height;
-
     return Scaffold(
-      bottomNavigationBar: ItemsMenuInferior(
-        larguraTela: larguraTela,
-        alturaTela: alturaTela,
-      ),
+      bottomNavigationBar: ItemsMenuInferior(),
       appBar: AppBarPadrao(
         title: const Text('Adicionar Consignação'),
         showCallBack: true,

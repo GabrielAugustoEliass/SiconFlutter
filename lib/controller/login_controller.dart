@@ -12,31 +12,39 @@ class LoginController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
 
-  valorDigitadoUsuario(String value) {
-    if (controllerNameUsuario.text != 'gabriel.elias') {
-      return showDialog(
-        context: c!,
-        builder: (context) => AlertDialog(
-          title: Center(
+  showMensagemErroLogin() {
+    return showDialog(
+      barrierDismissible: false,
+      context: c!,
+      builder: (context) => AlertDialog(
+        title: Center(
+          child: Text(
+            'Atenção',
+            style: TextStyle(color: ColorsApp.corAzulApp, fontSize: 25),
+          ),
+        ),
+        actions: [
+          Center(
             child: Text(
-              'Atenção',
-              style: TextStyle(color: ColorsApp.corAzulApp, fontSize: 25),
+              'Usuário ou senha inválidos',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20),
             ),
           ),
-          actions: [
-            Center(
-              child: Text(
-                'Usuário ou senha inválidos',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
+          SizedBox(height: 20),
+          Center(
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: ColorsApp.corAzulApp,
               ),
+              onPressed: () {
+                Get.back();
+              },
+              child: Text('Ok'),
             ),
-            SizedBox(height: 20),
-          ],
-        ),
-      );
-    } else {
-      return;
-    }
+          ),
+        ],
+      ),
+    );
   }
 }

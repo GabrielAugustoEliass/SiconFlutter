@@ -3,17 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sicon_flutter/controller/controller_linearProgress.dart';
+import 'package:sicon_flutter/shared/tamanhos_telas/tamanhos_tela.dart';
 import '../../../shared/constants/colors.dart';
 
 class CardMargemWidget extends StatefulWidget {
   const CardMargemWidget({
     Key? key,
-    required this.alturaTela,
-    required this.larguraTela,
   });
-
-  final double larguraTela;
-  final double alturaTela;
 
   @override
   State<CardMargemWidget> createState() => _CardMargemWidgetState();
@@ -21,25 +17,26 @@ class CardMargemWidget extends StatefulWidget {
 
 class _CardMargemWidgetState extends State<CardMargemWidget> {
   final c = Get.put(ControllerlinearProgress());
+  final tamanhosTelas = Get.find<TamanhosTelas>();
 
   @override
   Widget build(BuildContext context) {
     final valorFinal = c.margemUtilizada.value - c.valorBruto.value;
     return Padding(
       padding: EdgeInsets.only(
-        top: widget.alturaTela * 0.017,
-        left: widget.alturaTela * 0.01,
-        right: widget.alturaTela * 0.01,
+        top: tamanhosTelas.alturaTela * 0.017,
+        left: tamanhosTelas.larguraTela * 0.01,
+        right: tamanhosTelas.larguraTela * 0.01,
       ),
       child: Expanded(
         child: Card(
           elevation: 2,
           child: Padding(
             padding: EdgeInsets.only(
-              top: widget.alturaTela * 0.004,
-              left: widget.larguraTela * 0.03,
-              right: widget.larguraTela * 0.03,
-              bottom: widget.alturaTela * 0.014,
+              top: tamanhosTelas.alturaTela * 0.004,
+              left: tamanhosTelas.larguraTela * 0.03,
+              right: tamanhosTelas.larguraTela * 0.03,
+              bottom: tamanhosTelas.alturaTela * 0.014,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +48,8 @@ class _CardMargemWidgetState extends State<CardMargemWidget> {
                       alignment: Alignment.center,
                       child: Text(
                         'Margem Empréstimo',
-                        style: TextStyle(fontSize: widget.larguraTela * 0.053),
+                        style: TextStyle(
+                            fontSize: tamanhosTelas.larguraTela * 0.053),
                       ),
                     ),
                     Align(
@@ -59,12 +57,12 @@ class _CardMargemWidgetState extends State<CardMargemWidget> {
                       child: Icon(
                         Icons.visibility_outlined,
                         color: ColorsApp.corAzulApp,
-                        size: widget.larguraTela * 0.065,
+                        size: tamanhosTelas.larguraTela * 0.065,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: widget.alturaTela * 0.022),
+                SizedBox(height: tamanhosTelas.alturaTela * 0.022),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -73,7 +71,7 @@ class _CardMargemWidgetState extends State<CardMargemWidget> {
                       'Margem Utilizada:',
                       style: TextStyle(
                         color: ColorsApp.corLaranja,
-                        fontSize: 17,
+                        fontSize: tamanhosTelas.larguraTela * 0.042,
                       ),
                     ),
                     SizedBox(height: 2),
@@ -81,12 +79,12 @@ class _CardMargemWidgetState extends State<CardMargemWidget> {
                       'R\$ ${c.margemUtilizada}',
                       style: TextStyle(
                         color: ColorsApp.corLaranja,
-                        fontSize: 15,
+                        fontSize: tamanhosTelas.larguraTela * 0.04,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: widget.alturaTela * 0.02),
+                SizedBox(height: tamanhosTelas.alturaTela * 0.02),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,14 +95,14 @@ class _CardMargemWidgetState extends State<CardMargemWidget> {
                         Text(
                           'Margem Bruta:',
                           style: TextStyle(
-                            fontSize: 17,
+                            fontSize: tamanhosTelas.larguraTela * 0.042,
                           ),
                         ),
                         SizedBox(height: 2),
                         Text(
                           'R\$ ${c.valorBruto}',
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: tamanhosTelas.larguraTela * 0.042,
                           ),
                         ),
                       ],
@@ -115,12 +113,13 @@ class _CardMargemWidgetState extends State<CardMargemWidget> {
                         Text(
                           'Margem Disponivel:',
                           style: TextStyle(
-                              fontSize: 16, color: ColorsApp.corAzulApp),
+                              fontSize: tamanhosTelas.larguraTela * 0.042,
+                              color: ColorsApp.corAzulApp),
                         ),
                         Text(
                           'R\$ $valorFinal',
                           style: TextStyle(
-                            fontSize: 25,
+                            fontSize: tamanhosTelas.larguraTela * 0.065,
                             color: ColorsApp.corAzulApp,
                             fontWeight: FontWeight.w500,
                           ),
@@ -129,7 +128,7 @@ class _CardMargemWidgetState extends State<CardMargemWidget> {
                     ),
                   ],
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: tamanhosTelas.alturaTela * 0.01),
                 LinearProgressIndicator(
                   value: c.margemUtilizada.value / c.valorBruto.value,
                   color: ColorsApp.corAzulApp,

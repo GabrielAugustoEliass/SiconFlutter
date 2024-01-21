@@ -3,56 +3,54 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sicon_flutter/shared/items_menu_inferior/widgets/items_menu_inferior_widget.dart';
+import 'package:sicon_flutter/shared/tamanhos_telas/tamanhos_tela.dart';
+import 'package:sicon_flutter/views/suporte/suporte_page.dart';
 import '../../views/consignacoes/pages/consignacoes_page.dart';
 import '../../views/contatos/pages/contatos_page.dart';
 
 class ItemsMenuInferior extends StatelessWidget {
-  const ItemsMenuInferior({
-    super.key,
-    required this.larguraTela,
-    required this.alturaTela,
-  });
+  ItemsMenuInferior({super.key});
 
-  final double larguraTela;
-  final double alturaTela;
+  final tamanhosTelas = Get.find<TamanhosTelas>();
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        ItemsMenuInferiorWidget(
-          onTap: () {
-            Get.to(() => ConsignacoesPage());
-          },
-          title: 'Consignação',
-          icon: Icons.monetization_on_rounded,
-          larguraTela: larguraTela,
-          alturaTela: alturaTela,
+    return Padding(
+      padding: EdgeInsets.only(left: tamanhosTelas.larguraTela * 0.012),
+      child: SizedBox(
+        height: tamanhosTelas.alturaTela * 0.12,
+        width: tamanhosTelas.larguraTela,
+        child: Row(
+          children: [
+            ItemsMenuInferiorWidget(
+              onTap: () {
+                Get.to(() => ConsignacoesPage());
+              },
+              title: 'Consignação',
+              icon: Icons.monetization_on_outlined,
+            ),
+            ItemsMenuInferiorWidget(
+              onTap: () {},
+              title: 'Endereço',
+              icon: Icons.map_outlined,
+            ),
+            ItemsMenuInferiorWidget(
+              onTap: () {
+                Get.to(() => ContatosPages());
+              },
+              title: 'Contatos',
+              icon: Icons.person_outline,
+            ),
+            ItemsMenuInferiorWidget(
+              onTap: () {
+                Get.to(() => Suporte());
+              },
+              title: 'Suporte',
+              icon: Icons.help_outline_outlined,
+            ),
+          ],
         ),
-        ItemsMenuInferiorWidget(
-          onTap: () {},
-          title: 'Endereço',
-          icon: Icons.map,
-          larguraTela: larguraTela,
-          alturaTela: alturaTela,
-        ),
-        ItemsMenuInferiorWidget(
-          onTap: () {
-            Get.to(() => ContatosPages());
-          },
-          title: 'Contatos',
-          icon: Icons.person_outline,
-          larguraTela: larguraTela,
-          alturaTela: alturaTela,
-        ),
-        ItemsMenuInferiorWidget(
-          onTap: () {},
-          title: 'Suporte',
-          icon: Icons.help_outline_outlined,
-          larguraTela: larguraTela,
-          alturaTela: alturaTela,
-        ),
-      ],
+      ),
     );
   }
 }

@@ -27,10 +27,7 @@ class _ContatosPagesState extends State<ContatosPages> {
     final controllerContatos = Get.put(ControllerContatos());
 
     return Scaffold(
-      bottomNavigationBar: ItemsMenuInferior(
-        larguraTela: larguraTela,
-        alturaTela: alturaTela,
-      ),
+      bottomNavigationBar: ItemsMenuInferior(),
       appBar: AppBarPadrao(
         title: Text('Contatos'),
         showCallBack: true,

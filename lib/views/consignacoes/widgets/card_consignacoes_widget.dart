@@ -4,17 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sicon_flutter/controller/controller_card_consignacoes.dart';
 import 'package:sicon_flutter/shared/constants/colors.dart';
+import 'package:sicon_flutter/shared/tamanhos_telas/tamanhos_tela.dart';
 
 class CardConsignacoesWidget extends StatefulWidget {
   const CardConsignacoesWidget({
     Key? key,
-    required this.alturaTela,
-    required this.larguraTela,
     required this.index,
   });
-
-  final double larguraTela;
-  final double alturaTela;
 
   final int index;
 
@@ -24,12 +20,13 @@ class CardConsignacoesWidget extends StatefulWidget {
 
 class _CardConsignacoesWidgetState extends State<CardConsignacoesWidget> {
   final c = Get.put(ControllerCardConsignacoes());
+  final tamanhosTelas = Get.find<TamanhosTelas>();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        top: widget.alturaTela * 0.015,
+        top: tamanhosTelas.alturaTela * 0.015,
       ),
       child: Expanded(
         child: Obx(
@@ -42,20 +39,21 @@ class _CardConsignacoesWidgetState extends State<CardConsignacoesWidget> {
                     Text(
                       'Empréstimos',
                       style: TextStyle(
-                        fontSize: widget.larguraTela * 0.059,
+                        fontSize: tamanhosTelas.larguraTela * 0.059,
                       ),
                     ),
                     SizedBox(
-                      width: widget.larguraTela,
+                      width: tamanhosTelas.larguraTela,
                       child: Padding(
                         padding: EdgeInsets.only(
-                          left: widget.alturaTela * 0.011,
-                          right: widget.alturaTela * 0.011,
+                          left: tamanhosTelas.larguraTela * 0.011,
+                          right: tamanhosTelas.larguraTela * 0.011,
                         ),
                         child: Card(
                           elevation: 3,
                           child: Padding(
-                            padding: EdgeInsets.all(widget.larguraTela * 0.03),
+                            padding: EdgeInsets.all(
+                                tamanhosTelas.larguraTela * 0.03),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -68,7 +66,8 @@ class _CardConsignacoesWidgetState extends State<CardConsignacoesWidget> {
                                     Text(
                                       consignacao.nomeServico,
                                       style: TextStyle(
-                                        fontSize: widget.larguraTela * 0.047,
+                                        fontSize:
+                                            tamanhosTelas.larguraTela * 0.047,
                                       ),
                                     ),
                                     Column(
@@ -81,7 +80,8 @@ class _CardConsignacoesWidgetState extends State<CardConsignacoesWidget> {
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize:
-                                                  widget.larguraTela * 0.045,
+                                                  tamanhosTelas.larguraTela *
+                                                      0.045,
                                             ),
                                             children: [
                                               TextSpan(
@@ -104,7 +104,8 @@ class _CardConsignacoesWidgetState extends State<CardConsignacoesWidget> {
                                     )
                                   ],
                                 ),
-                                SizedBox(height: widget.alturaTela * 0.01),
+                                SizedBox(
+                                    height: tamanhosTelas.alturaTela * 0.01),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -117,7 +118,8 @@ class _CardConsignacoesWidgetState extends State<CardConsignacoesWidget> {
                                         : Icon(null),
                                   ],
                                 ),
-                                SizedBox(height: widget.alturaTela * 0.01),
+                                SizedBox(
+                                    height: tamanhosTelas.alturaTela * 0.01),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment:
@@ -131,14 +133,16 @@ class _CardConsignacoesWidgetState extends State<CardConsignacoesWidget> {
                                           'Valor Empréstimo:',
                                           style: TextStyle(
                                             fontSize:
-                                                widget.larguraTela * 0.037,
+                                                tamanhosTelas.larguraTela *
+                                                    0.037,
                                           ),
                                         ),
                                         Text(
                                           'R\$ ${consignacao.valorEmprestimo}',
                                           style: TextStyle(
                                             fontSize:
-                                                widget.larguraTela * 0.062,
+                                                tamanhosTelas.larguraTela *
+                                                    0.062,
                                             color: ColorsApp.corLaranja,
                                           ),
                                         ),
@@ -152,14 +156,16 @@ class _CardConsignacoesWidgetState extends State<CardConsignacoesWidget> {
                                           'Valor Usado:',
                                           style: TextStyle(
                                             fontSize:
-                                                widget.larguraTela * 0.037,
+                                                tamanhosTelas.larguraTela *
+                                                    0.037,
                                           ),
                                         ),
                                         Text(
                                           'R\$ ${consignacao.valorUsado}',
                                           style: TextStyle(
                                             fontSize:
-                                                widget.larguraTela * 0.062,
+                                                tamanhosTelas.larguraTela *
+                                                    0.062,
                                             color: ColorsApp.corAzulApp,
                                           ),
                                         ),
