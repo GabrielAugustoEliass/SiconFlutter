@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: SizedBox(
           height: tamanhoTela.alturaTela,
           width: tamanhoTela.larguraTela,
@@ -41,8 +41,9 @@ class _LoginPageState extends State<LoginPage> {
               top: tamanhoTela.alturaTela * 0.01,
               right: tamanhoTela.larguraTela * 0.037,
               left: tamanhoTela.larguraTela * 0.037,
+              bottom: tamanhoTela.alturaTela * 0.01,
             ),
-            child: SingleChildScrollView(
+            child: SafeArea(
               child: Column(
                 children: [
                   Row(
@@ -97,10 +98,11 @@ class _LoginPageState extends State<LoginPage> {
                         Text('Esqueci minha senha', textAlign: TextAlign.left),
                         SizedBox(height: tamanhoTela.alturaTela * 0.05),
                         BottomLoginWidget(),
-                        AjudasWidget(),
                       ],
                     ),
                   ),
+                  Spacer(),
+                  AjudasWidget(),
                 ],
               ),
             ),

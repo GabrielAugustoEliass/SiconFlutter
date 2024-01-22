@@ -1,13 +1,11 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new
+// ignore_for_file: must_be_immutable, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
+import 'package:get/get.dart';
+import 'package:sicon_flutter/controller/controller_image_picker.dart';
 import 'package:sicon_flutter/shared/tamanhos_telas/tamanhos_tela.dart';
 import '../constants/colors.dart';
 
-// ignore: must_be_immutable
 class AppBarPadrao extends StatelessWidget implements PreferredSize {
   final Widget? title;
   bool showCallBack;
@@ -19,6 +17,7 @@ class AppBarPadrao extends StatelessWidget implements PreferredSize {
   }) : super(key: key);
 
   final tamanhoTela = Get.find<TamanhosTelas>();
+  final controllerImage = Get.put(ControllerImagePicker());
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +31,37 @@ class AppBarPadrao extends StatelessWidget implements PreferredSize {
       ),
       actions: [
         Padding(
-          padding: EdgeInsets.only(right: tamanhoTela.larguraTela * 0.02),
-          child: CircleAvatar(
-            backgroundColor: Colors.white,
-            child: Icon(
-              Icons.person,
-              color: ColorsApp.corAzulApp,
-            ),
+          padding: const EdgeInsets.only(right: 10, top: 5),
+          child: Stack(
+            children: [
+              CircleAvatar(
+                radius: tamanhoTela.larguraTela * 0.055,
+                backgroundColor: Colors.white,
+                child: GestureDetector(
+                  onTap: () {
+                    controllerImage.pickImageFromGallery();
+                  },
+                  child: Obx(
+                    () {
+                      final imagePath = controllerImage.imagePath.value;
+                      return CircleAvatar(
+                        radius: tamanhoTela.larguraTela * 0.053,
+                        backgroundColor: Colors.transparent,
+                        backgroundImage:
+                            imagePath != null ? FileImage(imagePath) : null,
+                        child: imagePath == null
+                            ? Icon(
+                                Icons.person,
+                                size: tamanhoTela.larguraTela * 0.06,
+                                color: ColorsApp.corAzulApp,
+                              )
+                            : null,
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ],
@@ -47,7 +70,7 @@ class AppBarPadrao extends StatelessWidget implements PreferredSize {
 
   @override
   Size get preferredSize {
-    return new Size.fromHeight(kToolbarHeight);
+    return const Size.fromHeight(kToolbarHeight);
   }
 
   @override

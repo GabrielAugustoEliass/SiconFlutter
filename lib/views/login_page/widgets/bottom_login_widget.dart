@@ -28,13 +28,13 @@ class _BottomLoginWidgetState extends State<BottomLoginWidget> {
       alignment: Alignment.bottomCenter,
       child: ElevatedButton(
         onPressed: () {
-          if (login.controllerNameUsuario.text != 'gabriel.elias' ||
-              login.controllerSenhaUsuario.text != 'gabe12345') {
-            login.showMensagemErroLogin();
-          } else {
-            login.controllerSenhaUsuario.clear();
-            Get.to(InicialPage());
-          }
+          // if (login.controllerNameUsuario.text != 'gabriel.elias' ||
+          //     login.controllerSenhaUsuario.text != 'gabe12345') {
+          //   login.showMensagemErroLogin();
+          // } else {
+          login.controllerSenhaUsuario.clear();
+          Get.to(InicialPage());
+          // }
         },
         child: Text('Acessar'),
         style: ElevatedButton.styleFrom(
